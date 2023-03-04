@@ -34,7 +34,7 @@ const Home = () => {
       let response = await openai.createCompletion({
         model: "text-davinci-003",
         prompt:
-          "Define the medical terms in the following text on separate lines in plain english:\n\n " + medicalData,
+          "Define the legal terms in the following text on separate lines in plain english:\n\n " + medicalData,
         temperature: 0.7,
         max_tokens: 256,
         top_p: 1,
@@ -77,7 +77,7 @@ const Home = () => {
         onSubmit={handleSubmit}
       >
         <label class="block text-gray-700 mb-2 font-medium" for="medical_data">
-          Input your medical data here:
+          Input your legal data here:
         </label>
         <input
           class="p-3 mb-4 bg-gray-200 rounded-lg w-1/2 md:w-1/3 lg:w-1/4"
