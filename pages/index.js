@@ -25,7 +25,7 @@ const Home = () => {
     const explanationElement = document.getElementById("loading");
     explanationElement.classList.remove("hidden");
 
-    // Update medical data loading state with true
+    // Update lease data loading state with true
     setMedicalDataLoading(true);
 
     // Implement check to make sure it is not a blank submission
@@ -33,8 +33,7 @@ const Home = () => {
 
       let response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt:
-          "Define the medical terms in the following text on separate lines in plain english:\n\n " + medicalData,
+        prompt: "summarize most important points on seperate lines with headers, with each header starting with the word HEADER \n\n " + medicalData,
         temperature: 0.7,
         max_tokens: 256,
         top_p: 1,
@@ -50,10 +49,8 @@ const Home = () => {
       setResult(res);
       // separate each term's description
       var lines = res.split(/\r?\n/);
-
-      console.log(lines);
+      
       var trimmed = [];
-      // identify the med term and its definition
       for (let i=0; i<lines.length; i++) {
         if (lines[i].length > 0) {
           trimmed.push(lines[i]);
@@ -62,8 +59,7 @@ const Home = () => {
         setExplanation(trimmed);
       }
       
-
-      // Update medical data loading state with false to allow explanation to conditionally render
+      // Update lease data loading state with false to allow explanation to conditionally render
       setMedicalDataLoading(false);
     } else {
       explanationElement.innerText = "You did not submit anything, please submit again."
@@ -77,7 +73,7 @@ const Home = () => {
         onSubmit={handleSubmit}
       >
         <label class="block text-gray-700 mb-2 font-medium" for="medical_data">
-          Input your medical data here:
+          Input your lease here:
         </label>
         <input
           class="p-3 mb-4 bg-gray-200 rounded-lg w-1/2 md:w-1/3 lg:w-1/4"
@@ -97,14 +93,18 @@ const Home = () => {
       {medicalDataLoading == false && (
         <div className="flex flex-col">
           <label class="block text-gray-700 font-medium" for="explanation">
-            Explanation:
+            Breakdown:
           </label>
           <div class="md:w-1/2 lg:w-1/3 p-3">
             <p id="explanation" className="p">
               {explanation.map((line, index) => (
+                
                 <div key={index} className="desc">
-                  <b>{line.substring(0, line.indexOf(":") + 1)}</b>
-                  <p>{line.substring(line.indexOf(":") + 1)}</p>
+                  {line.includes("HEADER") ?  
+                  <b>{line.substring(line.indexOf("HEADER") + 6) }</b>
+                   :
+                   <li>{line}</li> }
+                  
                 </div>
               ))}
             </p>
