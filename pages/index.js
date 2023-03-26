@@ -104,7 +104,7 @@ const Home = () => {
         className="flex flex-col bg-whiterounded-lg"
         onSubmit={handleSubmit}
       >
-        <label class="block text-gray-700 mb-2 heading" for="legal_data">
+        <label className="block text-gray-700 mb-2 heading" for="legal_data">
           enter text:
         </label>
         {/*<input
@@ -114,7 +114,7 @@ const Home = () => {
           onChange={(e) => setlegalData(e.target.value)}
   />*/}
         <textarea 
-          class="p-3 mb-4 rounded-lg w-1/2 md:w-1/3 lg:w-1/4 sandy" 
+          className="p-3 mb-4 rounded-lg w-1/2 md:w-1/3 lg:w-1/4 sandy" 
           id="legal_data"
           onChange={(e) => setlegalData(e.target.value)}
           name="legalData" 
@@ -133,7 +133,7 @@ const Home = () => {
       {legalDataLoading == false && (
         <div className="report">
           <div class="report-col">
-            <label class="block text-gray-700 font-medium" for="explanation">
+            <label className="block text-gray-700 font-medium" for="explanation">
               Definitions:
             </label>
             <div >
@@ -147,12 +147,12 @@ const Home = () => {
               </p>
             </div>
           </div>
-          <div class="report-col">
-            <div class="block text-gray-700 font-medium">Summary</div>
-            <div class="desc">
+          <div className="report-col">
+            <div className="block text-gray-700 font-medium">Summary</div>
+            <div className="desc">
               <ul>
               {summary.map((bullet, index) => (
-                <li class="summary-item" key={index}>{bullet}</li>
+                <li className="summary-item" key={index}>{bullet}</li>
               ))}
               </ul>
             </div>
@@ -164,10 +164,10 @@ const Home = () => {
         simplifying prompt...
       </p>
       <form>
-      <label class="block text-gray-700 mb-2 heading" for="file-selector">
+      <label className="block text-gray-700 mb-2 heading" for="file-selector">
           upload file:
       </label>
-      <label for="file-selector" class="custom-file-upload">
+      <label for="file-selector" className="custom-file-upload">
         choose a file +
       </label>
       <input type="file" id="file-selector" onChange={onFileChange}/>
