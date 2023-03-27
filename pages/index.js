@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Configuration, OpenAIApi } from "openai";
+import FileUpload from "./FileUpload";
 // https://legal-ease.vercel.app/
 
 const Home = () => {
-  const [file, setFile] = useState("");
   const [legalData, setlegalData] = useState("");
   const [charCount, setCharCount] = useState(0);
   const [explanation, setExplanation] = useState([]);
@@ -19,15 +19,9 @@ const Home = () => {
     //console.log(legalData);
     console.log(result);
     console.log(explanation);
-    console.log(file);
-  }, [explanation, result, file]); 
+  }, [explanation, result]); 
 
-  const onFileChange = (e) => {
-    setFile(e.target.files[0]);
-  }
-  const uploadFile = () => {
-    
-  }
+  
   const handleChange = (e) => {
     // update character count
     setCharCount(e.target.value.length);
@@ -168,7 +162,9 @@ const Home = () => {
       <p id="loading" className="hidden">
         simplifying prompt...
       </p>
-      <form>
+
+      <FileUpload/>
+      {/*<form>
       <label className="block text-gray-700 mb-2 heading" for="file-selector">
           upload file:
       </label>
@@ -176,14 +172,12 @@ const Home = () => {
         choose a file +
       </label>
       <input type="file" id="file-selector" onChange={onFileChange}/>
-      {/*<input type="button" id="upload" value="Upload" onClick={uploadFile} />*/}
       <button
         className="submit-btn hover:bg-gray-700 mb-4 font-medium py-2 px-4 rounded-lg min-w-fit w-1/6 md:w-1/8 lg:w-1/12"
         onClick={uploadFile}>
         Submit
       </button>
-      </form>
-
+      </form>*/}
       
     </div>
   );
