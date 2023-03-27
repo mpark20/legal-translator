@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Configuration, OpenAIApi } from "openai";
+// https://legal-ease.vercel.app/
 
 const Home = () => {
   const [file, setFile] = useState("");
